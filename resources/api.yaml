@@ -1,0 +1,29 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: example-kyma-serverless-function-python
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+---
+apiVersion: gateway.kyma-project.io/v1alpha1
+kind: APIRule
+metadata:
+  name: example-kyma-serverless-function-python
+spec:
+  gateway: kyma-gateway.kyma-system.svc.cluster.local
+  rules:
+    - accessStrategies:
+        - config: {}
+          handler: allow
+      methods:
+        - GET
+      path: /.*
+  service:
+    host: example-kyma-serverless-function-python.c-84615b1.stage.kyma.ondemand.com
+    name: example-kyma-serverless-function-python
+    port: 80
