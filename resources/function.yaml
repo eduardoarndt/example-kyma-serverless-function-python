@@ -1,0 +1,9 @@
+apiVersion: serverless.kyma-project.io/v1alpha1
+kind: Function
+metadata:
+  name: example-kyma-serverless-function-python
+spec:
+  type: git
+  runtime: python3.9
+  source: example-kyma-serverless-function-python
+  reference: main
